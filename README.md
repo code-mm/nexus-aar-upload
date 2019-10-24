@@ -36,39 +36,39 @@
 
 ## 添加插件
 
-apply plugin: 'maven'
+    apply plugin: 'maven'
 
 
 
 ## 配置任务
 
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: maven_releases_url) {
-            authentication(userName: maven_local_username, password: maven_local_password)
-        }
+    uploadArchives {
+        repositories.mavenDeployer {
+            repository(url: maven_releases_url) {
+                authentication(userName: maven_local_username, password: maven_local_password)
+            }
 
-        snapshotRepository(url: maven_snapshot_url) {
-            authentication(userName: maven_local_username, password: maven_local_password)
-        }
+            snapshotRepository(url: maven_snapshot_url) {
+                authentication(userName: maven_local_username, password: maven_local_password)
+            }
 
-        pom.project {
-            // 注意：【这里通过切换 versionName 的赋值来区分上传快照包还是正式包（snapshot 版本必须以 -SNAPSHOT 结尾）】
-            //version snapshotVersionName
-            //组 maven_pom_groupid
-            groupId maven_pom_groupid
-            //项目名称
-            artifactId maven_pom_artifactid
-            //  类型
-            packaging aar
-            // 描述
-            description maven_pom_description
-            // 版本
-            version versionname
+            pom.project {
+                // 注意：【这里通过切换 versionName 的赋值来区分上传快照包还是正式包（snapshot 版本必须以 -SNAPSHOT 结尾）】
+                //version snapshotVersionName
+                //组 maven_pom_groupid
+                groupId maven_pom_groupid
+                //项目名称
+                artifactId maven_pom_artifactid
+                //  类型
+                packaging aar
+                // 描述
+                description maven_pom_description
+                // 版本
+                version versionname
 
+            }
         }
     }
-}
 
 ## 运行 uploadArchives
 
